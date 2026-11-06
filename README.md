@@ -9,7 +9,7 @@ There is no runtime LLM, frontend, cloud rendering service, or prerecorded-video
 
 | Exact learner question | Concept | Latest included example |
 | --- | --- | --- |
-| How does the pH scale work? | `ph_scale` | [ph-scale-v05.mp4](examples/ph-scale-v05.mp4) |
+| How does the pH scale work? | `ph_scale` | [ph-scale-v06.mp4](examples/ph-scale-v06.mp4) |
 | Why do atoms form covalent bonds? | `covalent` | [covalent-bonds-v05.mp4](examples/covalent-bonds-v05.mp4) |
 | What is the difference between ionic and covalent bonding? | `ionic_vs_covalent` | [ionic-vs-covalent-v05.mp4](examples/ionic-vs-covalent-v05.mp4) |
 

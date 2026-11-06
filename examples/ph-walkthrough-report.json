@@ -1,0 +1,21 @@
+{
+  "transport": "HTTP",
+  "base_url": "http://127.0.0.1:8000",
+  "job_id": "3654ea8f-bbb6-4fe4-a596-c5fbfc61a32d",
+  "question": "How does the pH scale work?",
+  "post_status": 202,
+  "post_seconds_rounded": 0.04,
+  "observed_states": [
+    "queued",
+    "processing",
+    "completed"
+  ],
+  "not_ready_file_status": 409,
+  "list_status": 200,
+  "detail_status": 200,
+  "file_status": 200,
+  "content_type": "video/mp4",
+  "file": "ph-scale-v06.mp4",
+  "bytes": 4181720,
+  "sha256": "16cd37008a78d4b5d2708639b6a126e416f5a1483516e65067456e9fd972cf6d"
+}

@@ -27,6 +27,8 @@ to the videos and records the audiovisual assessment.
    the single-process, timeout-cleanup and audiovisual-review limitations accurately.
 
 The committed `examples/demo-report.json` contains the actual final HTTP run results.
+The subsequent single-question walkthrough is recorded in
+`examples/ph-walkthrough-report.json`; its pH v06 is now the selected pH example.
 The test inventory distinguishes simulated failure cases from real media generation.
 
 ## What is included
