@@ -3,6 +3,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+from uuid import UUID
 
 import imageio_ffmpeg
 from app.scenarios import load_scenario
@@ -17,11 +18,16 @@ class VideoGenerator:
         self.timeout = timeout
 
     def __call__(self, job: dict) -> bool:
+        job_id = str(UUID(job["job_id"]))
+        if job_id != job["job_id"]:
+            raise ValueError("Job identifier must be a canonical UUID")
         scenario = load_scenario(job["concept"])
         if scenario.question != job["question"]:
             raise ValueError("Job question does not match scenario")
-        job_dir = self.artifact_root / job["job_id"]
-        job_dir.mkdir(parents=True, exist_ok=True)
+        self.artifact_root.mkdir(parents=True, exist_ok=True)
+        job_dir = self.artifact_root / job_id
+        # Never reuse a directory: stale files must not masquerade as a new render.
+        job_dir.mkdir(exist_ok=False)
         snapshot = job_dir / "scenario.json"
         snapshot.write_text(scenario.model_dump_json(indent=2), encoding="utf-8")
         temporary = job_dir / "render.mp4"
@@ -31,7 +37,7 @@ class VideoGenerator:
                     "TALOTRACE_TTS_PYTHON": str(ROOT / ".venv-tts" / "Scripts" / "python.exe"),
                     "TALOTRACE_FFMPEG": imageio_ffmpeg.get_ffmpeg_exe(),
                     "HF_HUB_OFFLINE": "1"})
-        command = [sys.executable, "-m", "manim", "--disable_caching", "-r", "854,480", "--fps", "30",
+        command = [sys.executable, "-m", "manim", "--disable_caching", "-r", "1920,1080", "--fps", "30",
                    "--media_dir", str(job_dir / "media"), "-o", str(temporary),
                    str(ROOT / "scenes" / "intro.py"), "ChemistryIntro"]
         with (job_dir / "render.log").open("w", encoding="utf-8") as log:

@@ -5,6 +5,20 @@ the explicit visual identifiers. Each job saves a validated copy of its scenario
 its render. The current diagrams use fixed, reviewed examples; parameter values are recorded
 for future extensions and are not yet used to configure every diagram.
 
+Each complete sentence is a narration cue with its own Kokoro WAV and Voiceover timing.
+Animation functions explicitly consume those cues in order; tests reject a changed cue
+count or a missing sentence. Keep narration free of abbreviations and decimal numbers,
+because the sentence splitter uses punctuation. Kokoro loads once per job and synthesizes
+all cues locally; no previously exported MP4 is reused. Renders are configured as 16:9,
+1920 by 1080, 30 frames per second. `python -m scripts.render_review` submits the three
+questions and saves numbered review copies without overwriting earlier versions.
+
+Scientific simplifications are labeled in the lessons: pH uses hydrogen-ion activity,
+neutral pH depends on temperature, lemons only illustrate the logarithmic factor,
+electron dots and density clouds are schematic, the H2 energy curve is qualitative,
+and the NaCl drawing is a 2D slice of an extended 3D lattice. Water's Lewis-style model
+includes two shared pairs and two lone pairs; partial charges are distinguished from ions.
+
 The provided lemon, salt and water SVG illustrations in `images_pour_videos/` are OpenMoji
 artwork: [OpenMoji](https://openmoji.org/), licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 Simple Manim shapes and labels are used as fallbacks if these assets are absent.

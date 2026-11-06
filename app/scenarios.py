@@ -1,10 +1,16 @@
 import json
+import re
 from pathlib import Path
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def narration_lines(text: str) -> list[str]:
+    """Storyboards use complete sentences without abbreviations or decimal numbers."""
+    return re.split(r"(?<=[.!?])\s+", text.strip())
 CONCEPTS = {
     "ph_scale": ("How does the pH scale work?", "ph_scale.json", ["hydronium", "ph_scale", "logarithmic", "activity_comparison", "ph_recap"]),
     "covalent": ("Why do atoms form covalent bonds?", "covalent_bonds.json", ["hydrogen_atoms", "electron_density", "energy_curve", "hydrogen_molecule", "covalent_recap"]),

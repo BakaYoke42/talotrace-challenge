@@ -4,10 +4,10 @@
   "question": "Why do atoms form covalent bonds?",
   "scene_type": "covalent",
   "segments": [
-    {"id": "intro", "visual": "hydrogen_atoms", "narration": "Consider two separate hydrogen atoms, each with one electron.", "parameters": {"atom": "H", "count": 2}},
-    {"id": "sharing", "visual": "electron_density", "narration": "As the atoms approach, their electron clouds overlap. The electrons can be shared in a region around both nuclei.", "parameters": {}},
-    {"id": "energy", "visual": "energy_curve", "narration": "At a suitable separation, attractions and repulsions balance. The bonded state has lower potential energy than the separated atoms.", "parameters": {"curve": "qualitative"}},
-    {"id": "molecule", "visual": "hydrogen_molecule", "narration": "The resulting hydrogen molecule has a covalent bond, represented here by a shared pair of electrons.", "parameters": {"formula": "H2"}},
-    {"id": "recap", "visual": "covalent_recap", "narration": "Covalent bonding involves shared electron density and can form when the bonded arrangement is energetically favorable.", "parameters": {}}
+    {"id": "intro", "visual": "hydrogen_atoms", "narration": "Why can two hydrogen atoms stay together? Each starts with one proton and one electron. The dots are symbols for electrons, not little planets following fixed paths.", "parameters": {"atom": "H", "count": 2}},
+    {"id": "sharing", "visual": "electron_density", "narration": "As the atoms approach, their electron clouds overlap. Both electrons can interact with both nuclei, creating shared electron density. That attraction can stabilize the pair.", "parameters": {}},
+    {"id": "energy", "visual": "energy_curve", "narration": "Follow the energy as the atoms move closer. At the bottom of the curve, the bonded state has lower energy than the separated atoms. Push them too close and repulsion raises the energy again.", "parameters": {"curve": "qualitative"}},
+    {"id": "molecule", "visual": "hydrogen_molecule", "narration": "At the equilibrium separation, we have a hydrogen molecule, with two shared electrons. Forming this bond releases energy, and breaking it requires energy.", "parameters": {"formula": "H2"}},
+    {"id": "recap", "visual": "covalent_recap", "narration": "A covalent bond combines shared electron density with an energetically favorable arrangement. Shared electrons and lower energy: that is the key idea.", "parameters": {}}
   ]
 }

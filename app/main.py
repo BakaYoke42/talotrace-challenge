@@ -73,7 +73,7 @@ def create_app(database_path: str | Path = "jobs.sqlite3", executor=None, artifa
         if job["status"] != "completed" or not job["artifact_url"]:
             raise HTTPException(status_code=409, detail="No video artifact is available")
         path = artifact_root / str(job_id) / "video.mp4"
-        if not path.is_file() or path.stat().st_size == 0:
+        if path.resolve() != path or not path.is_file() or path.stat().st_size == 0:
             raise HTTPException(status_code=404, detail="Video artifact is missing")
         return FileResponse(path, media_type="video/mp4", filename=f"{job_id}.mp4")
 

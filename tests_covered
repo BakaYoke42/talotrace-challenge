@@ -1,0 +1,91 @@
+TEST COVERAGE INVENTORY
+
+Purpose: This file describes the automated checks currently implemented in tests/, why
+they exist, and the separate real-render smoke checks. It helps reviewers understand
+what has been verified and what still requires human review. It is an inventory, not
+an executable test suite or a guarantee that the service is production-ready.
+
+Run the automated suite on Windows from the project root:
+
+    .\.venv\Scripts\python.exe -m pytest -q --basetemp=.pytest_cache\test-run
+
+The most recent run passed 32 test cases. Parameterized tests account for
+multiple cases per function. Render subprocesses are simulated in the pytest tests;
+they do not produce real MP4 videos.
+
+API AND JOB LIFECYCLE — tests/test_api.py
+
+- test_contract (three cases): checks each supported question, HTTP 202, concept and
+  initial queued state, status and list endpoints, simulated completion, unavailable
+  file response, and availability of the API documentation.
+- test_invalid_requests: checks unsupported or missing questions, malformed and
+  unknown job identifiers, unknown file requests, and an empty job list.
+- test_fifo_and_responsive_api: blocks a simulated first job, verifies that the next
+  request returns promptly and remains queued, then verifies sequential FIFO execution.
+- test_failure_and_restart_recovery: checks a safe failure message, unavailable output,
+  persistence across restart, interrupted jobs marked failed, and queued jobs resumed.
+
+RENDER PROCESS AND PUBLICATION — tests/test_generator.py
+
+- test_subprocess_success_and_artifact_endpoint: simulates a successful subprocess and
+  checks publication, the artifact URL and retrieval of the generated test bytes.
+- test_render_failure_does_not_publish (four cases): simulates a nonzero exit, timeout,
+  missing output and empty output; none may publish a final artifact.
+
+SCENARIO VALIDATION — tests/test_scenarios.py
+
+- test_scenario_loads_and_matches_mapping (three cases): loads each storyboard and
+  checks its question, ordered visual identifiers and nonempty narration.
+- test_invalid_scenarios_are_rejected (six cases): rejects an unknown visual, wrong
+  segment order, empty narration, wrong question, duplicate segment ID or extra field.
+- test_scenario_must_match_requested_concept: rejects a storyboard belonging to another
+  concept and rejects an unknown concept.
+- test_invalid_scenario_prevents_render: confirms invalid scenario data is rejected
+  before a render subprocess is started.
+
+MANIM OBJECT CONSTRUCTION — tests/test_visuals.py
+
+- test_each_storyboard_visual_builds: constructs the pH animations with a scene test
+  double, verifies that every narrated sentence is consumed in order, and rejects an
+  unknown identifier. It does not render or inspect a video.
+- test_ph_lemon_metaphor_is_explicit: checks the ten-lemon comparison and the explicit
+  on-screen and spoken explanations that lemons are a visual metaphor, not a pH measure.
+- test_bonding_segments_construct_animations: constructs both bonding scenarios, verifies
+  that every narrated sentence is consumed in order, and rejects an unknown visual.
+- test_water_shared_electrons_and_crystal_pattern: checks both shared electron pairs and
+  both lone pairs in water, and alternating sodium and chloride ions in the crystal diagram.
+- test_changed_sentence_count_is_rejected: rejects narration changes that would no longer
+  match the explicit sentence-level visual direction.
+
+RELIABILITY AND PATH SAFETY — tests/test_reliability.py
+
+- test_repeated_and_multiple_jobs_are_isolated_and_fifo: submits four jobs, including
+  two identical questions, checks queuing and FIFO order, then checks unique job IDs,
+  isolated test artifacts and their retrieval through the correct file endpoints.
+- test_failure_then_next_job_succeeds (two cases): simulates a failed render or timeout,
+  checks the failed job and safe error, then confirms that the next job completes.
+- test_reject_existing_job_directory_and_invalid_id: rejects an existing job directory
+  containing stale output and rejects a non-UUID path-like identifier before rendering.
+- test_file_route_rejects_traversal_and_missing_artifact: checks encoded path traversal,
+  invalid and unknown IDs, and a missing artifact after a job has completed.
+
+REAL-RENDER SMOKE CHECKS — scripts/
+
+- run_api_smoke.py submits one topic through the API (pH by default, selectable with
+  --concept) and checks its final status and file response. This runs the actual renderer.
+- render_three.py submits all three supported questions to the same worker and checks
+  completion and file retrieval. It was run successfully during phase 5.
+- render_repeated.py submits two pH jobs and checks their distinct IDs, completion and
+  file retrieval. It was run successfully during phase 6.
+- render_bonding.py submits the two bonding topics and checks completion and retrieval.
+- render_review.py submits selected topics (all by default), retrieves their real MP4s,
+  and creates sequentially numbered review copies plus a job/hash index.
+- demo_api.py exercises a separately running HTTP server: three POST requests, list and
+  status reads, unsupported input, not-ready file errors, and real MP4 downloads. The
+  final run report is included in examples/demo-report.json.
+
+These scripts create real jobs, local files and render logs, and can take several
+minutes. Process exit, HTTP response and nonempty-file checks do not establish that
+the image, narration, timing or science are correct: the user reviews those directly.
+The pytest timeout test uses a simulation and does not prove that all child processes
+are terminated. See RELIABILITY.md for this and other known limitations.

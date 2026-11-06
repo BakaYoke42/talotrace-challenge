@@ -1,4 +1,5 @@
 import json
+from uuid import uuid4
 
 import pytest
 from pydantic import ValidationError
@@ -52,4 +53,4 @@ def test_invalid_scenario_prevents_render(tmp_path, monkeypatch):
     monkeypatch.setattr(generator, "load_scenario", lambda concept: load_scenario(concept, tmp_path))
     monkeypatch.setattr(generator.subprocess, "run", lambda *a, **k: pytest.fail("Render must not start"))
     with pytest.raises(ValidationError):
-        VideoGenerator(tmp_path / "artifacts")({"job_id": "test", "concept": "ph_scale", "question": CONCEPTS["ph_scale"][0]})
+        VideoGenerator(tmp_path / "artifacts")({"job_id": str(uuid4()), "concept": "ph_scale", "question": CONCEPTS["ph_scale"][0]})

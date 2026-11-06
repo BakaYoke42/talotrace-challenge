@@ -1,4 +1,5 @@
 import logging
+import subprocess
 from threading import Event, Thread
 
 logger = logging.getLogger(__name__)
@@ -40,6 +41,9 @@ class Worker:
                 continue
             try:
                 artifact_available = self.executor(job)
+            except subprocess.TimeoutExpired:
+                logger.exception("Job %s exceeded the render timeout", job["job_id"])
+                self.store.finish(job["job_id"], "Video rendering timed out")
             except Exception:
                 logger.exception("Job %s failed", job["job_id"])
                 self.store.finish(job["job_id"], "Job execution failed")

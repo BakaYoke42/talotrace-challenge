@@ -4,10 +4,10 @@
   "question": "What is the difference between ionic and covalent bonding?",
   "scene_type": "ionic_vs_covalent",
   "segments": [
-    {"id": "intro", "visual": "salt_and_water", "narration": "Table salt and water illustrate two different bonding models: ionic and covalent.", "parameters": {"ionic_example": "NaCl", "covalent_example": "H2O"}},
-    {"id": "ionic", "visual": "ionic_lattice", "narration": "In a simplified model, sodium transfers an electron to chlorine. The resulting positive sodium and negative chloride ions attract each other. Solid sodium chloride forms a lattice of ions, not separate sodium chloride molecules.", "parameters": {"cation": "Na+", "anion": "Cl-"}},
-    {"id": "covalent", "visual": "polar_water", "narration": "In water, oxygen and hydrogen share electrons in covalent bonds. The sharing is unequal, so these bonds are polar covalent.", "parameters": {"formula": "H2O", "bond": "polar covalent"}},
-    {"id": "comparison", "visual": "bond_comparison", "narration": "Ionic bonding is electrostatic attraction between oppositely charged ions; covalent bonding involves shared electron density between atoms.", "parameters": {}},
-    {"id": "recap", "visual": "bond_recap", "narration": "The key comparison is attraction between ions versus shared electrons, with real bonds often showing a mixture of character.", "parameters": {}}
+    {"id": "intro", "visual": "salt_and_water", "narration": "Salt and water look familiar, but their bonding tells two different stories. Salt illustrates ionic bonding, while the bonds inside a water molecule are covalent.", "parameters": {"ionic_example": "NaCl", "covalent_example": "H2O"}},
+    {"id": "ionic", "visual": "ionic_lattice", "narration": "In a simplified electron transfer model, sodium loses an electron and chlorine gains it. The positive sodium ion and negative chloride ion attract each other. In solid salt, this attraction extends through a repeating three dimensional ion lattice, not separate sodium chloride molecules.", "parameters": {"cation": "Na+", "anion": "Cl-"}},
+    {"id": "covalent", "visual": "polar_water", "narration": "Inside water, each oxygen hydrogen bond has a shared electron pair. Oxygen attracts the shared density more strongly, so these bonds are polar covalent. Partial charges mean unequal sharing, not fully formed positive and negative ions.", "parameters": {"formula": "H2O", "bond": "polar covalent"}},
+    {"id": "comparison", "visual": "bond_comparison", "narration": "Compare the pictures: ionic bonding holds oppositely charged ions together. Covalent bonding holds atoms together through shared electron density.", "parameters": {}},
+    {"id": "recap", "visual": "bond_recap", "narration": "For salt, think of an extended ion lattice; for water, think of shared electrons inside each molecule. These are useful models, and real bonds can have a mixture of ionic and covalent character.", "parameters": {}}
   ]
 }
