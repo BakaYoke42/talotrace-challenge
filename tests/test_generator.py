@@ -40,5 +40,5 @@ def test_render_failure_does_not_publish(tmp_path, monkeypatch, behavior):
     root = tmp_path / "artifacts"
     job_id = str(uuid4())
     with pytest.raises((RuntimeError, subprocess.TimeoutExpired)):
-        VideoGenerator(root)({"job_id": job_id, "concept": "ph_scale"})
+        VideoGenerator(root)({"job_id": job_id, "concept": "ph_scale", "question": next(iter(QUESTIONS))})
     assert not (root / job_id / "video.mp4").exists()

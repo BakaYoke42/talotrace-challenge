@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "concept_id": "covalent",
+  "question": "Why do atoms form covalent bonds?",
+  "scene_type": "covalent",
+  "segments": [
+    {"id": "intro", "visual": "hydrogen_atoms", "narration": "Consider two separate hydrogen atoms, each with one electron.", "parameters": {"atom": "H", "count": 2}},
+    {"id": "sharing", "visual": "electron_density", "narration": "As the atoms approach, their electron clouds overlap. The electrons can be shared in a region around both nuclei.", "parameters": {}},
+    {"id": "energy", "visual": "energy_curve", "narration": "At a suitable separation, attractions and repulsions balance. The bonded state has lower potential energy than the separated atoms.", "parameters": {"curve": "qualitative"}},
+    {"id": "molecule", "visual": "hydrogen_molecule", "narration": "The resulting hydrogen molecule has a covalent bond, represented here by a shared pair of electrons.", "parameters": {"formula": "H2"}},
+    {"id": "recap", "visual": "covalent_recap", "narration": "Covalent bonding involves shared electron density and can form when the bonded arrangement is energetically favorable.", "parameters": {}}
+  ]
+}

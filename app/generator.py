@@ -5,6 +5,7 @@ import subprocess
 import sys
 
 import imageio_ffmpeg
+from app.scenarios import load_scenario
 
 ROOT = Path(__file__).resolve().parent.parent
 logger = logging.getLogger(__name__)
@@ -16,11 +17,17 @@ class VideoGenerator:
         self.timeout = timeout
 
     def __call__(self, job: dict) -> bool:
+        scenario = load_scenario(job["concept"])
+        if scenario.question != job["question"]:
+            raise ValueError("Job question does not match scenario")
         job_dir = self.artifact_root / job["job_id"]
         job_dir.mkdir(parents=True, exist_ok=True)
+        snapshot = job_dir / "scenario.json"
+        snapshot.write_text(scenario.model_dump_json(indent=2), encoding="utf-8")
         temporary = job_dir / "render.mp4"
         env = os.environ.copy()
         env.update({"TALOTRACE_CONCEPT": job["concept"],
+                    "TALOTRACE_SCENARIO": str(snapshot),
                     "TALOTRACE_TTS_PYTHON": str(ROOT / ".venv-tts" / "Scripts" / "python.exe"),
                     "TALOTRACE_FFMPEG": imageio_ffmpeg.get_ffmpeg_exe(),
                     "HF_HUB_OFFLINE": "1"})

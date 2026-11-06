@@ -9,12 +9,9 @@ from pydantic import BaseModel
 from app.jobs import JobStore
 from app.worker import Worker
 from app.generator import VideoGenerator
+from app.scenarios import CONCEPTS
 
-QUESTIONS = {
-    "How does the pH scale work?": "ph_scale",
-    "Why do atoms form covalent bonds?": "covalent",
-    "What is the difference between ionic and covalent bonding?": "ionic_vs_covalent",
-}
+QUESTIONS = {details[0]: concept for concept, details in CONCEPTS.items()}
 
 
 class VideoRequest(BaseModel):

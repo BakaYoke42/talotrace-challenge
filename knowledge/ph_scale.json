@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "concept_id": "ph_scale",
+  "question": "How does the pH scale work?",
+  "scene_type": "ph_scale",
+  "segments": [
+    {"id": "intro", "visual": "hydronium", "narration": "In water, hydrogen ions are associated with water molecules, forming hydronium. The pH describes hydrogen ion activity in an aqueous solution.", "parameters": {"ion": "H3O+"}},
+    {"id": "scale", "visual": "ph_scale", "narration": "On a common classroom scale, acidic solutions are below seven and basic solutions above seven. Pure water is approximately neutral at pH seven, at twenty five degrees Celsius. The scale can extend beyond zero and fourteen.", "parameters": {"min": 0, "max": 14, "neutral_temperature_c": 25}},
+    {"id": "log", "visual": "logarithmic", "narration": "The scale is logarithmic. A decrease of one pH unit corresponds to ten times the hydrogen ion activity.", "parameters": {"ph_difference": 1, "activity_factor": 10}},
+    {"id": "comparison", "visual": "activity_comparison", "narration": "For example, a solution at pH three has ten times the hydrogen ion activity of one at pH four. In dilute solutions, activity can be approximated by hydronium concentration.", "parameters": {"lower_ph": 3, "higher_ph": 4, "factor": 10}},
+    {"id": "recap", "visual": "ph_recap", "narration": "Remember: lower pH means higher hydrogen ion activity, and each pH unit represents a factor of ten.", "parameters": {}}
+  ]
+}
