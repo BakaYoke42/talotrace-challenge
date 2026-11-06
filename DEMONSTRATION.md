@@ -40,8 +40,8 @@ The test inventory distinguishes simulated failure cases from real media generat
 - `IMPLEMENTATION_PLAN_v0.9.md` and `rules/`: the original plan and challenge requirements.
 
 Virtual environments, model weights, SQLite files, logs, intermediate media and older
-video iterations remain local and ignored. The history is retained on GitHub; the final
-branch must be merged into the repository's default branch when the candidate is ready.
+video iterations remain local and ignored. The history is retained on GitHub, and the
+complete delivery is available on the repository's default branch, `main`.
 
 ## Submission remains the candidate's action
 

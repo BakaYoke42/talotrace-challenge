@@ -24,7 +24,7 @@ interpreter at `.venv-tts/Scripts/python.exe`. Other operating systems need that
 adapted. Segoe UI is the display font used on the tested Windows installation.
 
 ```powershell
-git clone --branch feature/phase6-reliability https://github.com/BakaYoke42/talotrace-challenge.git
+git clone https://github.com/BakaYoke42/talotrace-challenge.git
 cd talotrace-challenge
 py -3.12 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
@@ -56,8 +56,7 @@ this pipeline. The diagrams use text and vector shapes, so no LaTeX installation
 required. An optional SoX warning can appear when importing Voiceover; the current path
 does not use recording or speed adjustment. A GPU is not required.
 
-The final delivery is on `feature/phase6-reliability` until that branch is merged into
-`main`; the clone command explicitly selects it.
+The complete delivery is available on `main`, which the clone command selects by default.
 
 The direct dependency versions reflect the working environments. The full workflow has
 been exercised there; a fresh installation on another machine has not been verified.
